@@ -1,11 +1,16 @@
 package cadastro;
 		import java.awt.Container;
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+		import javax.swing.ButtonGroup;
 		import javax.swing.JFrame;
 		import javax.swing.JTextField;
 		import javax.swing.JButton;
-		import cadastro.Pessoa;
+import javax.swing.JComboBox;
+
+import cadastro.Pessoa;
 		import javax.swing.JLabel;
-		
+		import javax.swing.JRadioButton;
 		
 public class Pessoa extends JFrame {
 	
@@ -36,7 +41,16 @@ public class Pessoa extends JFrame {
 	
 	
 	//botão
-	//JButton btnLimpar = new JButton ("Limpar");
+	JButton btnLimpar = new JButton ("Limpar");
+	JButton btnEnviar = new JButton ("Enviar");
+	
+	//sexo
+	JRadioButton rdnSexom = new JRadioButton ("Masculino") ;
+	JRadioButton rdnSexof = new JRadioButton ("Feminino");
+	ButtonGroup  grupo = new ButtonGroup ();
+	
+	//Estado
+	JComboBox cboEsta = new JComboBox();
 	
 	public Pessoa (){
 		
@@ -85,12 +99,41 @@ public class Pessoa extends JFrame {
 			txtCidade.setBounds(100, 220, 200, 25);
 		
 		//estado do cadastrado 
+			
 			paine.add(lblEstado);
 			lblEstado.setBounds(20, 260, 65, 25);
 			
-			paine.add(txtEstado);
-			txtEstado.setBounds(100, 260, 200, 25);	
-		
+			paine.add(cboEsta);
+			cboEsta.setBounds(100, 260, 120, 25);
+			
+			//estados no cbo
+			cboEsta.addItem("Acre");
+			cboEsta.addItem("Alagoas");
+			cboEsta.addItem("Amapa");
+			cboEsta.addItem("Amazonas");
+			cboEsta.addItem("Bahia");
+			cboEsta.addItem("Ceará");
+			cboEsta.addItem("Distrito Federal");
+			cboEsta.addItem("Espirito Santo");
+			cboEsta.addItem("Goiás");
+			cboEsta.addItem("Maranhão");
+			cboEsta.addItem("Mato Grosso");
+			cboEsta.addItem("Mato Grosso do Sul");
+			cboEsta.addItem("Minas Gerais");
+			cboEsta.addItem("Pará");
+			cboEsta.addItem("Paraíba");
+			cboEsta.addItem("Paraná");
+			cboEsta.addItem("Pernambuco");
+			cboEsta.addItem("Piauí");
+			cboEsta.addItem("Rio de Janeiro");
+			cboEsta.addItem("Rio Grande do Norte");
+			cboEsta.addItem("Rio Grande do Sul");
+			cboEsta.addItem("Rondônia");
+			cboEsta.addItem("Santa Catarina");
+			cboEsta.addItem("São Paulo");
+			cboEsta.addItem("Sergipe");
+			cboEsta.addItem("Tocantins");
+			
 		//Telefone do cadastrado 
 			paine.add(lblTelefone);
 			lblTelefone.setBounds(20, 300, 65, 25);
@@ -119,9 +162,41 @@ public class Pessoa extends JFrame {
 			paine.add(txtCpf);
 			txtCpf.setBounds(100, 420, 200, 25);
 			
+		//rnd do sexo 
+			
+			grupo.add(rdnSexom);
+			grupo.add(rdnSexof);
+			
+			paine.add(rdnSexom);
+			rdnSexom.setBounds(20, 460, 100, 25);
+			
+			paine.add(rdnSexof);
+			rdnSexof.setBounds(120, 460, 80, 25);
+			
+		//btn limpar
+			paine.add(btnLimpar);
+			btnLimpar.setBounds(180, 500, 80, 25);
+			btnLimpar.addActionListener(new ActionListener() {
+				@Override 
+					public void actionPerformed(ActionEvent e){
+						txtNome.setText("");
+						txtEnde.setText("");
+						txtBairro.setText("");
+						txtCep.setText("");
+						txtCidade.setText("");
+						txtTelefone.setText("");
+						txtCelular.setText("");
+						txtRg.setText("");
+						txtCpf.setText("");
+					}
+				});
+			//btn Enviar
+				paine.add(btnEnviar);
+				btnEnviar.setBounds(60, 500, 80, 25);
+			
 		
 		paine.setLayout(null); // posicionamento dos objetos do layout
-		this.setSize(390,560); // tamanho da tela
+		this.setSize(350,600); // tamanho da tela
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
