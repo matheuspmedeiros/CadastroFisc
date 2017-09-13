@@ -2,29 +2,28 @@ package cadastro;
 		import java.awt.Container;
 		import java.awt.event.ActionEvent;
 		import java.awt.event.ActionListener;
+		
+		import cadastro.Pessoa;
+		
+		import javax.swing.JLabel;
+		import javax.swing.JRadioButton;
 		import javax.swing.ButtonGroup;
 		import javax.swing.JFrame;
 		import javax.swing.JTextField;
 		import javax.swing.JButton;
-import javax.swing.JComboBox;
-
-import cadastro.Pessoa;
-		import javax.swing.JLabel;
-		import javax.swing.JRadioButton;
+		import javax.swing.JComboBox;
+		import javax.swing.JFormattedTextField;
+		import javax.swing.text.MaskFormatter;
 		
 public class Pessoa extends JFrame {
 	
 	//caixa de texto
-	JTextField txtNome = new JTextField();
+	JTextField txtNome = new JTextField("Matheus");
 	JTextField txtEnde = new JTextField();
 	JTextField txtBairro = new JTextField();
-	JTextField txtCep = new JTextField();	
 	JTextField txtCidade = new JTextField();
 	JTextField txtEstado = new JTextField();
-	JTextField txtTelefone = new JTextField();
-	JTextField txtCelular = new JTextField();
-	JTextField txtRg = new JTextField();
-	JTextField txtCpf = new JTextField();
+	
 	
 	//label
 	JLabel lblInt = new JLabel ("Cadastro de Pessoa Fisica");
@@ -52,6 +51,24 @@ public class Pessoa extends JFrame {
 	//Estado
 	JComboBox cboEsta = new JComboBox();
 	
+	//mascara 
+	 
+	MaskFormatter formasTell = null;
+	JFormattedTextField txtTelefone = null;
+	
+	MaskFormatter formasCep = null;
+	JFormattedTextField txtCep = null;
+	
+	MaskFormatter formasCelular = null;
+	JFormattedTextField txtCelular = null;
+	
+	MaskFormatter formasRg = null;
+	JFormattedTextField txtRg = null;
+	
+	MaskFormatter formasCpf = null;
+	JFormattedTextField txtCpf = null;
+	
+	
 	public Pessoa (){
 		
 		super("Cadatro Pessoa Fisica");
@@ -69,6 +86,7 @@ public class Pessoa extends JFrame {
 			
 			paine.add(txtNome);
 			txtNome.setBounds(100, 60, 200, 25);
+			
 		
 		//Endereco do cadastrado
 			paine.add(lblEnde);
@@ -88,8 +106,15 @@ public class Pessoa extends JFrame {
 			paine.add(lblCep);
 			lblCep.setBounds(20, 180, 65, 25);
 					
+				try {
+					formasCep = new MaskFormatter("#####-###");
+					txtCep = new JFormattedTextField(formasCep);
+				} catch (Exception ex){
+					ex.printStackTrace();
+				}
+			
 			paine.add(txtCep);
-			txtCep.setBounds(100, 180, 200, 25);
+			txtCep.setBounds(100, 180, 100, 25);
 				
 		//cidade do cadastrado 
 			paine.add(lblCidade);
@@ -107,60 +132,93 @@ public class Pessoa extends JFrame {
 			cboEsta.setBounds(100, 260, 120, 25);
 			
 			//estados no cbo
-			cboEsta.addItem("Acre");
-			cboEsta.addItem("Alagoas");
-			cboEsta.addItem("Amapa");
-			cboEsta.addItem("Amazonas");
-			cboEsta.addItem("Bahia");
-			cboEsta.addItem("Ceará");
-			cboEsta.addItem("Distrito Federal");
-			cboEsta.addItem("Espirito Santo");
-			cboEsta.addItem("Goiás");
-			cboEsta.addItem("Maranhão");
-			cboEsta.addItem("Mato Grosso");
-			cboEsta.addItem("Mato Grosso do Sul");
-			cboEsta.addItem("Minas Gerais");
-			cboEsta.addItem("Pará");
-			cboEsta.addItem("Paraíba");
-			cboEsta.addItem("Paraná");
-			cboEsta.addItem("Pernambuco");
-			cboEsta.addItem("Piauí");
-			cboEsta.addItem("Rio de Janeiro");
-			cboEsta.addItem("Rio Grande do Norte");
-			cboEsta.addItem("Rio Grande do Sul");
-			cboEsta.addItem("Rondônia");
-			cboEsta.addItem("Santa Catarina");
-			cboEsta.addItem("São Paulo");
-			cboEsta.addItem("Sergipe");
-			cboEsta.addItem("Tocantins");
+			
+				cboEsta.addItem("Acre");
+				cboEsta.addItem("Alagoas");
+				cboEsta.addItem("Amapa");
+				cboEsta.addItem("Amazonas");
+				cboEsta.addItem("Bahia");
+				cboEsta.addItem("Ceará");
+				cboEsta.addItem("Distrito Federal");
+				cboEsta.addItem("Espirito Santo");
+				cboEsta.addItem("Goiás");
+				cboEsta.addItem("Maranhão");
+				cboEsta.addItem("Mato Grosso");
+				cboEsta.addItem("Mato Grosso do Sul");
+				cboEsta.addItem("Minas Gerais");
+				cboEsta.addItem("Pará");
+				cboEsta.addItem("Paraíba");
+				cboEsta.addItem("Paraná");
+				cboEsta.addItem("Pernambuco");
+				cboEsta.addItem("Piauí");
+				cboEsta.addItem("Rio de Janeiro");
+				cboEsta.addItem("Rio Grande do Norte");
+				cboEsta.addItem("Rio Grande do Sul");
+				cboEsta.addItem("Rondônia");
+				cboEsta.addItem("Santa Catarina");
+				cboEsta.addItem("São Paulo");
+				cboEsta.addItem("Sergipe");
+				cboEsta.addItem("Tocantins");
 			
 		//Telefone do cadastrado 
 			paine.add(lblTelefone);
 			lblTelefone.setBounds(20, 300, 65, 25);
 			
+				try {
+					formasTell = new MaskFormatter("(##)####-####");
+					txtTelefone = new JFormattedTextField(formasTell);
+				} catch (Exception ex){
+					ex.printStackTrace();
+				}
+			
 			paine.add(txtTelefone);
-			txtTelefone.setBounds(100, 300, 200, 25);
+			txtTelefone.setBounds(100, 300, 100, 25);
+			
+				
 			
 		//Celuar do cadastrado 
 			paine.add(lblCelular);
 			lblCelular.setBounds(20, 340, 65, 25);
 			
+				try {
+					formasCelular = new MaskFormatter("(##)#####-####");
+					txtCelular = new JFormattedTextField(formasCelular);
+				} catch (Exception ex){
+					ex.printStackTrace();
+				}
+			
 			paine.add(txtCelular);
-			txtCelular.setBounds(100, 340, 200, 25);
+			txtCelular.setBounds(100, 340, 100, 25);
+			
+			
 			
 		//Rg do cadastrado 
 			paine.add(lblRg);
 			lblRg.setBounds(20, 380, 65, 25);
 			
+				try {
+					formasRg = new MaskFormatter("##.###.###-A");
+					txtRg = new JFormattedTextField(formasRg);
+				} catch (Exception ex){
+					ex.printStackTrace();
+				}
+			
 			paine.add(txtRg);
-			txtRg.setBounds(100, 380, 200, 25);
+			txtRg.setBounds(100, 380, 100, 25);
 			
 		//Cpf do cadastrado 
 			paine.add(lblCpf);
 			lblCpf.setBounds(20, 420, 65, 25);
 			
+				try {
+					formasCpf = new MaskFormatter("###.###.###-##");
+					txtCpf = new JFormattedTextField(formasCpf);
+				} catch (Exception ex){
+					ex.printStackTrace();
+				}
+			
 			paine.add(txtCpf);
-			txtCpf.setBounds(100, 420, 200, 25);
+			txtCpf.setBounds(100, 420, 100, 25);
 			
 		//rnd do sexo 
 			
@@ -179,6 +237,7 @@ public class Pessoa extends JFrame {
 			btnLimpar.addActionListener(new ActionListener() {
 				@Override 
 					public void actionPerformed(ActionEvent e){
+						cboEsta.setSelectedItem("Null");
 						txtNome.setText("");
 						txtEnde.setText("");
 						txtBairro.setText("");
